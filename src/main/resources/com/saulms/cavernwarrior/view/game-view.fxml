@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.shape.Rectangle?>
+
+<Pane xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.saulms.cavernwarrior.controllers.GameController"
+      fx:id="root">
+
+    <GridPane fx:id="gridPane" alignment="CENTER">
+<!--        <Rectangle GridPane.rowIndex="0" GridPane.columnIndex="0" width="800" height="800" fill="orange"/>-->
+<!--        <Rectangle GridPane.rowIndex="1" GridPane.columnIndex="0" width="800" height="800" fill="yellow"/>-->
+<!--        <Rectangle GridPane.rowIndex="0" GridPane.columnIndex="1" width="800" height="800" fill="green"/>-->
+<!--        <Rectangle GridPane.rowIndex="1" GridPane.columnIndex="1" width="800" height="800" fill="blue"/>-->
+    </GridPane>
+
+</Pane>

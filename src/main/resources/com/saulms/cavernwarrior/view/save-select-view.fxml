@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.14-internal"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.saulms.cavernwarrior.controllers.SaveSelectController">
+
+    <center>
+        <VBox alignment="CENTER" spacing="20">
+            <Label text="Select a Save File" style="-fx-font-size: 24px"/>
+            <VBox fx:id="savesVBox" alignment="CENTER" spacing="10">
+                <Label text="Empty Save File" style="-fx-font-size: 16px" onMouseClicked="#selectFile"/>
+                <Label text="Empty Save File" style="-fx-font-size: 16px" onMouseClicked="#selectFile"/>
+                <Label text="Empty Save File" style="-fx-font-size: 16px" onMouseClicked="#selectFile"/>
+            </VBox>
+            <Label fx:id="fileOptionsLabel" style="-fx-font-size: 16px" onMouseClicked="#startGame"/>
+            <Label fx:id="backLabel" text="Back" style="-fx-font-size: 16px" onMouseClicked="#back"/>
+        </VBox>
+    </center>
+
+</BorderPane>
