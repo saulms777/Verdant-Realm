@@ -40,10 +40,18 @@ public class GameEngine extends Application implements Constants {
         if (isPressed(KeyCode.S)) {
             gameController.movePlayerY(5);
         }
+        if (isPressed(KeyCode.ESCAPE)) {
+            gameTimer.stop();
+            gameController.pause();
+        }
     }
 
     private boolean isPressed(KeyCode key) {
         return keyMap.getOrDefault(key, false);
+    }
+
+    public void resumeGame() {
+        gameTimer.start();
     }
 
     public void loadPage(String path) {
@@ -75,7 +83,6 @@ public class GameEngine extends Application implements Constants {
         appRoot.setOnKeyReleased(event -> keyMap.put(event.getCode(), false));
 
         stage.setTitle("Cavern Warrior");
-        stage.setResizable(false);
         stage.setFullScreen(true);
         stage.setFullScreenExitHint("");
         stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);

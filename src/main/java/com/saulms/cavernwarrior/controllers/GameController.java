@@ -3,6 +3,8 @@ package com.saulms.cavernwarrior.controllers;
 import com.saulms.cavernwarrior.Camera;
 import com.saulms.cavernwarrior.Player;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -19,6 +21,9 @@ public class GameController extends Controller {
 
     @FXML private Pane root;
     @FXML private GridPane gridPane;
+    @FXML private BorderPane pausePane;
+    @FXML private Label resumeLabel;
+    @FXML private Label backLabel;
 
     @FXML
     @Override
@@ -27,7 +32,10 @@ public class GameController extends Controller {
         root.getChildren().add(player.getSprite());
         camera = new Camera(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 
-        System.out.println(SCREEN_WIDTH);
+        pausePane.setMinWidth(SCREEN_WIDTH);
+        pausePane.setMinHeight(SCREEN_HEIGHT);
+        setHoverAnimation(resumeLabel);
+        setHoverAnimation(backLabel);
 
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
@@ -37,6 +45,19 @@ public class GameController extends Controller {
                 gridPane.add(rectangle, i, j);
             }
         }
+    }
+
+    public void pause() {
+        pausePane.setVisible(true);
+    }
+
+    public void resume() {
+        pausePane.setVisible(false);
+        gameEngine.resumeGame();
+    }
+
+    public void back() {
+        gameEngine.loadPage("view/start-page-view.fxml");
     }
 
     public void movePlayerX(double v) {
