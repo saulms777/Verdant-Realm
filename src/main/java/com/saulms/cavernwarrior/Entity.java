@@ -5,13 +5,15 @@ import javafx.scene.shape.Rectangle;
 
 public abstract class Entity {
 
-    protected Rectangle sprite;
+    protected final Rectangle sprite;
     protected double x;
     protected double y;
-    protected double width;
-    protected double height;
+    protected final double width;
+    protected final double height;
 
-    public Entity(double width, double height) {
+    public Entity(double x, double y, double width, double height) {
+        this.x = x;
+        this.y = y;
         this.width = width;
         this.height = height;
         sprite = new Rectangle(width, height);
@@ -30,10 +32,6 @@ public abstract class Entity {
         this.x = x;
     }
 
-    public void setLayoutX(double x) {
-        sprite.setLayoutX(x);
-    }
-
     public double getWidth() {
         return width;
     }
@@ -44,10 +42,6 @@ public abstract class Entity {
 
     public void setY(double y) {
         this.y = y;
-    }
-
-    public void setLayoutY(double y) {
-        sprite.setLayoutY(y);
     }
 
     public double getHeight() {
