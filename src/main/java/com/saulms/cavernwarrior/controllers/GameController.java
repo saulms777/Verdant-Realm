@@ -1,14 +1,16 @@
 package com.saulms.cavernwarrior.controllers;
 
 import com.saulms.cavernwarrior.Camera;
-import com.saulms.cavernwarrior.Player;
+import com.saulms.cavernwarrior.GameEngine;
+import com.saulms.cavernwarrior.World;
+import com.saulms.cavernwarrior.entities.Player;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
 
 public class GameController extends Controller {
@@ -16,6 +18,7 @@ public class GameController extends Controller {
     private static final double SCREEN_WIDTH = Screen.getPrimary().getBounds().getWidth();
     private static final double SCREEN_HEIGHT = Screen.getPrimary().getBounds().getHeight();
 
+    private World world;
     private Player player;
     private Camera camera;
 
@@ -28,23 +31,17 @@ public class GameController extends Controller {
     @FXML
     @Override
     protected void initialize() {
-        player = new Player(0, 0, 30, 30);
-        root.getChildren().add(player.getSprite());
-        camera = new Camera(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        world = GameEngine.loadJson("/com/saulms/cavernwarrior/data/test.json", World.class);
+        gridPane.add(new ImageView(new Image(GameEngine.getResource(world.getBackgroundPath()))), 0, 0);
+        camera = new Camera(0, 0);
+
+        player = new Player(0, 0);
+        root.getChildren().add(1, player.getSprite());
 
         pausePane.setMinWidth(SCREEN_WIDTH);
         pausePane.setMinHeight(SCREEN_HEIGHT);
         setHoverAnimation(resumeLabel);
         setHoverAnimation(backLabel);
-
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                Rectangle rectangle = new Rectangle(200, 200,
-                        Color.rgb(255 - 25 * i, 255 - 25 * j, 128));
-                rectangle.setSmooth(false);
-                gridPane.add(rectangle, i, j);
-            }
-        }
     }
 
     public void pause() {
@@ -63,7 +60,7 @@ public class GameController extends Controller {
     public void movePlayerX(double v) {
         double x = player.getX();
         double cameraX = camera.getX();
-        double playerWidth = player.getWidth();
+        double playerWidth = player.getSprite().getFitWidth();
         double gridWidth = gridPane.getWidth();
 
         if (x + v <= 0) x = 0;
@@ -82,7 +79,7 @@ public class GameController extends Controller {
     public void movePlayerY(double v) {
         double y = player.getY();
         double cameraY = camera.getY();
-        double playerHeight = player.getHeight();
+        double playerHeight = player.getSprite().getFitHeight();
         double gridHeight = gridPane.getHeight();
 
         if (y + v <= 0) y = 0;
