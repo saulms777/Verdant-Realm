@@ -2,8 +2,7 @@ package com.saulms.cavernwarrior;
 
 public class Camera {
 
-    private double x;
-    private double y;
+    private double x, y;
 
     public Camera(double x, double y) {
         this.x = x;

@@ -8,8 +8,7 @@ public abstract class Entity {
 
     @JsonIgnore protected Image image;
     @JsonIgnore protected ImageView sprite;
-    protected double x;
-    protected double y;
+    protected double x, y;
 
     public Entity() {}
 

@@ -1,6 +1,5 @@
 package com.saulms.cavernwarrior;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.saulms.cavernwarrior.controllers.Controller;
 import com.saulms.cavernwarrior.controllers.GameController;
 import javafx.animation.AnimationTimer;
@@ -13,9 +12,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.HashMap;
-import java.util.Objects;
 
 public class GameEngine extends Application {
 
@@ -95,18 +92,6 @@ public class GameEngine extends Application {
 
     public static void main(String[] args) {
         launch(args);
-    }
-
-
-    private static final ObjectMapper mapper = new ObjectMapper();
-
-    public static InputStream getResource(String path) {
-        return Objects.requireNonNull(GameEngine.class.getResourceAsStream(path));
-    }
-
-    public static <T> T loadJson(String path, Class<T> type) {
-        try {return mapper.readValue(getResource(path), type);}
-        catch (IOException e) {throw new RuntimeException(e);}
     }
 
 }

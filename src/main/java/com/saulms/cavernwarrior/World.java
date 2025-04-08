@@ -7,11 +7,11 @@ import java.util.List;
 public class World {
 
     private String stageId;
-    private double width;
-    private double height;
-    private double spawnX;
-    private double spawnY;
-    private String backgroundPath;
+    private double width, height;
+    private double spawnX, spawnY;
+    private String tileset;
+    private double tilesize;
+    private List<List<Integer>> tilemap;
     private List<List<Integer>> collision;
     private List<Enemy> enemies;
 
@@ -55,12 +55,28 @@ public class World {
         this.spawnY = spawnY;
     }
 
-    public String getBackgroundPath() {
-        return backgroundPath;
+    public String getTileset() {
+        return tileset;
     }
 
-    public void setBackgroundPath(String backgroundPath) {
-        this.backgroundPath = backgroundPath;
+    public void setTileset(String tileset) {
+        this.tileset = tileset;
+    }
+
+    public double getTilesize() {
+        return tilesize;
+    }
+
+    public void setTilesize(double tilesize) {
+        this.tilesize = tilesize;
+    }
+
+    public List<List<Integer>> getTilemap() {
+        return tilemap;
+    }
+
+    public void setTilemap(List<List<Integer>> tilemap) {
+        this.tilemap = tilemap;
     }
 
     public List<List<Integer>> getCollision() {
