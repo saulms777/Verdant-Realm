@@ -1,6 +1,7 @@
-package com.saulms.cavernwarrior;
+package com.saulms.cavernwarrior.data;
 
 import com.saulms.cavernwarrior.entities.Enemy;
+import com.saulms.cavernwarrior.entities.Item;
 
 import java.util.List;
 
@@ -9,11 +10,14 @@ public class World {
     private String stageId;
     private int width, height;
     private int spawnX, spawnY;
+    private String music;
     private String tileset;
     private int tilesize;
     private List<List<Integer>> tilemap;
     private List<List<Integer>> collision;
     private List<Enemy> enemies;
+    private List<Item> items;
+    private List<Event> events;
 
     public String getStageId() {
         return stageId;
@@ -55,6 +59,14 @@ public class World {
         this.spawnY = spawnY;
     }
 
+    public String getMusic() {
+        return music;
+    }
+
+    public void setMusic(String music) {
+        this.music = music;
+    }
+
     public String getTileset() {
         return tileset;
     }
@@ -93,6 +105,24 @@ public class World {
 
     public void setEnemies(List<Enemy> enemies) {
         this.enemies = enemies;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
+        for (Event event : events)
+            event.loadAction();
     }
 
 }

@@ -4,6 +4,7 @@
   "height": 900,
   "spawnX": 288,
   "spawnY": 288,
+  "music": "stage_theme_01.ogg",
   "tileset": "test_tilemap.png",
   "tilesize": 144,
   "tilemap": [
@@ -23,7 +24,13 @@
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   ],
   "enemies": [
-    { "type": "slime", "level": 2, "x": 12, "y": 20 },
-    { "type": "archer", "level": 3, "x": 15, "y": 25 }
+    { "type": "SLIME", "level": 2, "x": 12, "y": 20 },
+    { "type": "ARCHER", "level": 3, "x": 15, "y": 25 }
+  ],
+  "items": [
+    { "type": "HEALTH_POTION", "x": 5, "y": 8 }
+  ],
+  "events": [
+    { "trigger": "ENTER", "area": { "x": 20, "y": 10, "w": 5, "h": 5 }, "actionType": "SPAWN_WAVE" }
   ]
 }

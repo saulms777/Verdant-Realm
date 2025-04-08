@@ -1,6 +1,7 @@
-package com.saulms.cavernwarrior;
+package com.saulms.cavernwarrior.data;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.saulms.cavernwarrior.GameEngine;
 
 import java.io.IOException;
 import java.io.InputStream;

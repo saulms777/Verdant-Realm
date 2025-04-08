@@ -1,8 +1,8 @@
 package com.saulms.cavernwarrior.controllers;
 
 import com.saulms.cavernwarrior.Camera;
-import com.saulms.cavernwarrior.GameResource;
-import com.saulms.cavernwarrior.World;
+import com.saulms.cavernwarrior.data.GameResource;
+import com.saulms.cavernwarrior.data.World;
 import com.saulms.cavernwarrior.entities.Entity;
 import com.saulms.cavernwarrior.entities.Player;
 import javafx.fxml.FXML;

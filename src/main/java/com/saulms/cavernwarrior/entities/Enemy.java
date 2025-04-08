@@ -2,16 +2,16 @@ package com.saulms.cavernwarrior.entities;
 
 public class Enemy extends Entity {
 
-    private String type;
+    private EnemyType type;
     private int level;
 
     public Enemy() {}
 
-    public String getType() {
+    public EnemyType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(EnemyType type) {
         this.type = type;
     }
 
