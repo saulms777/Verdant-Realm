@@ -7,10 +7,10 @@ import java.util.List;
 public class World {
 
     private String stageId;
-    private double width, height;
-    private double spawnX, spawnY;
+    private int width, height;
+    private int spawnX, spawnY;
     private String tileset;
-    private double tilesize;
+    private int tilesize;
     private List<List<Integer>> tilemap;
     private List<List<Integer>> collision;
     private List<Enemy> enemies;
@@ -23,35 +23,35 @@ public class World {
         this.stageId = stageId;
     }
 
-    public double getWidth() {
+    public int getWidth() {
         return width;
     }
 
-    public void setWidth(double width) {
+    public void setWidth(int width) {
         this.width = width;
     }
 
-    public double getHeight() {
+    public int getHeight() {
         return height;
     }
 
-    public void setHeight(double height) {
+    public void setHeight(int height) {
         this.height = height;
     }
 
-    public double getSpawnX() {
+    public int getSpawnX() {
         return spawnX;
     }
 
-    public void setSpawnX(double spawnX) {
+    public void setSpawnX(int spawnX) {
         this.spawnX = spawnX;
     }
 
-    public double getSpawnY() {
+    public int getSpawnY() {
         return spawnY;
     }
 
-    public void setSpawnY(double spawnY) {
+    public void setSpawnY(int spawnY) {
         this.spawnY = spawnY;
     }
 
@@ -63,11 +63,11 @@ public class World {
         this.tileset = tileset;
     }
 
-    public double getTilesize() {
+    public int getTilesize() {
         return tilesize;
     }
 
-    public void setTilesize(double tilesize) {
+    public void setTilesize(int tilesize) {
         this.tilesize = tilesize;
     }
 

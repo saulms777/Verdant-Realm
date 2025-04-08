@@ -8,7 +8,7 @@ public abstract class Entity {
 
     @JsonIgnore protected Image image;
     @JsonIgnore protected ImageView sprite;
-    protected double x, y;
+    protected int x, y;
 
     public Entity() {}
 
@@ -16,20 +16,36 @@ public abstract class Entity {
         return sprite;
     }
 
-    public double getX() {
+    public int getX() {
         return x;
     }
 
-    public void setX(double x) {
+    public void setX(int x) {
         this.x = x;
     }
 
-    public double getY() {
+    public int getLeft() {
+        return x;
+    }
+
+    public int getRight() {
+        return x + (int) sprite.getFitWidth();
+    }
+
+    public int getY() {
         return y;
     }
 
-    public void setY(double y) {
+    public void setY(int y) {
         this.y = y;
+    }
+
+    public int getTop() {
+        return y;
+    }
+
+    public int getBottom() {
+        return y + (int) sprite.getFitHeight();
     }
 
 }
