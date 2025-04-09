@@ -1,14 +1,14 @@
-module com.saulms.cavernwarrior {
+module com.saulms.verdantrealm {
     requires javafx.controls;
     requires javafx.fxml;
     requires com.fasterxml.jackson.databind;
 
-    opens com.saulms.cavernwarrior to javafx.fxml;
-    opens com.saulms.cavernwarrior.controllers to javafx.fxml;
-    opens com.saulms.cavernwarrior.data to javafx.fxml;
-    opens com.saulms.cavernwarrior.entities to javafx.fxml;
-    exports com.saulms.cavernwarrior;
-    exports com.saulms.cavernwarrior.controllers;
-    exports com.saulms.cavernwarrior.data;
-    exports com.saulms.cavernwarrior.entities;
+    opens com.saulms.verdantrealm to javafx.fxml;
+    opens com.saulms.verdantrealm.controllers to javafx.fxml;
+    opens com.saulms.verdantrealm.data to javafx.fxml;
+    opens com.saulms.verdantrealm.entities to javafx.fxml;
+    exports com.saulms.verdantrealm;
+    exports com.saulms.verdantrealm.controllers;
+    exports com.saulms.verdantrealm.data;
+    exports com.saulms.verdantrealm.entities;
 }

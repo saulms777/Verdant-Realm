@@ -1,6 +1,6 @@
-package com.saulms.cavernwarrior.controllers;
+package com.saulms.verdantrealm.controllers;
 
-import com.saulms.cavernwarrior.GameEngine;
+import com.saulms.verdantrealm.GameEngine;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;

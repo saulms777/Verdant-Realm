@@ -1,4 +1,4 @@
-package com.saulms.cavernwarrior.entities;
+package com.saulms.verdantrealm.entities;
 
 public enum EnemyType {
     SLIME,

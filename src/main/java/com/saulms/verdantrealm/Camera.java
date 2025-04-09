@@ -1,4 +1,4 @@
-package com.saulms.cavernwarrior;
+package com.saulms.verdantrealm;
 
 public class Camera {
 

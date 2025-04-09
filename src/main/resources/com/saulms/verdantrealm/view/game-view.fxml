@@ -5,7 +5,7 @@
 
 <Pane xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.saulms.cavernwarrior.controllers.GameController"
+      fx:controller="com.saulms.verdantrealm.controllers.GameController"
       fx:id="root"
       style="-fx-background-color: BLACK">
 

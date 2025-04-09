@@ -1,7 +1,7 @@
-package com.saulms.cavernwarrior;
+package com.saulms.verdantrealm;
 
-import com.saulms.cavernwarrior.controllers.Controller;
-import com.saulms.cavernwarrior.controllers.GameController;
+import com.saulms.verdantrealm.controllers.Controller;
+import com.saulms.verdantrealm.controllers.GameController;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.Platform;

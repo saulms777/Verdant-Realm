@@ -1,4 +1,4 @@
-package com.saulms.cavernwarrior.data;
+package com.saulms.verdantrealm.data;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;

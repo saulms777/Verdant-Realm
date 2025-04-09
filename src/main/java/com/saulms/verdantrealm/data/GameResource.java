@@ -1,7 +1,7 @@
-package com.saulms.cavernwarrior.data;
+package com.saulms.verdantrealm.data;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.saulms.cavernwarrior.GameEngine;
+import com.saulms.verdantrealm.GameEngine;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,12 +16,12 @@ public final class GameResource {
     }
 
     public static InputStream loadImage(String path) {
-        path = "/com/saulms/cavernwarrior/images/" + path;
+        path = "/com/saulms/verdantrealm/images/" + path;
         return getResource(path);
     }
 
     public static <T> T loadJson(String path, Class<T> type) {
-        path = "/com/saulms/cavernwarrior/data/" + path;
+        path = "/com/saulms/verdantrealm/data/" + path;
         try {return mapper.readValue(getResource(path), type);}
         catch (IOException e) {throw new RuntimeException(e);}
     }

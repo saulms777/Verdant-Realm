@@ -1,6 +1,6 @@
-package com.saulms.cavernwarrior.entities;
+package com.saulms.verdantrealm.entities;
 
-import com.saulms.cavernwarrior.data.GameResource;
+import com.saulms.verdantrealm.data.GameResource;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 

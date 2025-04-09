@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.saulms</groupId>
-    <artifactId>CavernWarrior</artifactId>
+    <artifactId>VerdantRealm</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>CavernWarrior</name>
+    <name>VerdantRealm</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -64,7 +64,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.saulms.cavernwarrior/com.saulms.cavernwarrior.Launcher</mainClass>
+                            <mainClass>com.saulms.verdantrealm/com.saulms.verdantrealm.Launcher</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>

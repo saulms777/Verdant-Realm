@@ -1,4 +1,4 @@
-package com.saulms.cavernwarrior.data;
+package com.saulms.verdantrealm.data;
 
 public enum EventTriggerType {
     ENTER,

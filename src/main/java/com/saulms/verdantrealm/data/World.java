@@ -1,7 +1,7 @@
-package com.saulms.cavernwarrior.data;
+package com.saulms.verdantrealm.data;
 
-import com.saulms.cavernwarrior.entities.Enemy;
-import com.saulms.cavernwarrior.entities.Item;
+import com.saulms.verdantrealm.entities.Enemy;
+import com.saulms.verdantrealm.entities.Item;
 
 import java.util.List;
 

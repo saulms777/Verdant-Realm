@@ -1,4 +1,4 @@
-package com.saulms.cavernwarrior.controllers;
+package com.saulms.verdantrealm.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

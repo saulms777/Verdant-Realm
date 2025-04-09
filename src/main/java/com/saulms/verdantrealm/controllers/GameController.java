@@ -1,10 +1,10 @@
-package com.saulms.cavernwarrior.controllers;
+package com.saulms.verdantrealm.controllers;
 
-import com.saulms.cavernwarrior.Camera;
-import com.saulms.cavernwarrior.data.GameResource;
-import com.saulms.cavernwarrior.data.World;
-import com.saulms.cavernwarrior.entities.Entity;
-import com.saulms.cavernwarrior.entities.Player;
+import com.saulms.verdantrealm.Camera;
+import com.saulms.verdantrealm.data.GameResource;
+import com.saulms.verdantrealm.data.World;
+import com.saulms.verdantrealm.entities.Entity;
+import com.saulms.verdantrealm.entities.Player;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Label;
