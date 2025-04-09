@@ -2,7 +2,6 @@ package com.saulms.verdantrealm;
 
 import com.saulms.verdantrealm.controllers.Controller;
 import com.saulms.verdantrealm.controllers.GameController;
-import com.saulms.verdantrealm.data.GameResource;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -10,7 +9,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -28,7 +26,6 @@ public class GameEngine extends Application {
             updateGame();
         }
     };
-    private MediaPlayer backgroundMusic;
 
     private void updateGame() {
         if (isPressed(KeyCode.A))
@@ -59,18 +56,13 @@ public class GameEngine extends Application {
         catch (IOException e) {throw new RuntimeException(e);}
         viewController = pageLoader.getController();
         viewController.setGameEngine(this);
-
         gameTimer.stop();
-        if (backgroundMusic != null) backgroundMusic.stop();
     }
 
     public void loadGame() {
         loadPage("view/game-view.fxml");
         gameController = (GameController) viewController;
         gameTimer.start();
-        backgroundMusic = GameResource.loadSound(gameController.getWorld().getMusic());
-        backgroundMusic.setCycleCount(MediaPlayer.INDEFINITE);
-        backgroundMusic.play();
     }
 
     public void exit() {

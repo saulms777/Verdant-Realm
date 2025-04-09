@@ -2,6 +2,7 @@ package com.saulms.verdantrealm.controllers;
 
 import com.saulms.verdantrealm.Camera;
 import com.saulms.verdantrealm.data.GameResource;
+import com.saulms.verdantrealm.data.SoundManager;
 import com.saulms.verdantrealm.data.World;
 import com.saulms.verdantrealm.entities.Entity;
 import com.saulms.verdantrealm.entities.Player;
@@ -39,6 +40,7 @@ public class GameController extends Controller {
         loadWorld();
         player = new Player(world.getSpawnX(), world.getSpawnY());
         root.getChildren().add(1, player.getSprite());
+        SoundManager.playMusic(world.getMusic(), true);
 
         pausePane.setMinWidth(SCREEN_WIDTH);
         pausePane.setMinHeight(SCREEN_HEIGHT);
@@ -62,10 +64,6 @@ public class GameController extends Controller {
         }
     }
 
-    public World getWorld() {
-        return world;
-    }
-
     public void pause() {
         pausePane.setVisible(true);
     }
@@ -78,6 +76,7 @@ public class GameController extends Controller {
 
     @FXML
     private void back() {
+        SoundManager.stopMusic();
         gameEngine.loadPage("view/start-page-view.fxml");
     }
 
