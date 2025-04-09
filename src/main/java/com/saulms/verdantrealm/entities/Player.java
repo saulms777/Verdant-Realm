@@ -1,7 +1,6 @@
 package com.saulms.verdantrealm.entities;
 
 import com.saulms.verdantrealm.data.GameResource;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Player extends Entity {
@@ -9,7 +8,7 @@ public class Player extends Entity {
     public Player(int x, int y) {
         this.x = x;
         this.y = y;
-        image = new Image(GameResource.loadImage("test_player.png"));
+        image = GameResource.loadImage("test_player.png");
         sprite = new ImageView(image);
         sprite.setLayoutX(x);
         sprite.setLayoutY(y);

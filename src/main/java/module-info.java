@@ -1,6 +1,7 @@
 module com.saulms.verdantrealm {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.media;
     requires com.fasterxml.jackson.databind;
 
     opens com.saulms.verdantrealm to javafx.fxml;

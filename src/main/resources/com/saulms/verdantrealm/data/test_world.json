@@ -4,7 +4,7 @@
   "height": 900,
   "spawnX": 288,
   "spawnY": 288,
-  "music": "stage_theme_01.ogg",
+  "music": "test_music.mp3",
   "tileset": "test_tilemap.png",
   "tilesize": 144,
   "tilemap": [
