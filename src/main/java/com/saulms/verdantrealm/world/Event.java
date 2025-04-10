@@ -1,8 +1,10 @@
-package com.saulms.verdantrealm.data;
+package com.saulms.verdantrealm.world;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.saulms.verdantrealm.data.Rectangle2DDeserializer;
+import com.saulms.verdantrealm.data.Rectangle2DSerializer;
 import javafx.geometry.Rectangle2D;
 
 public class Event {

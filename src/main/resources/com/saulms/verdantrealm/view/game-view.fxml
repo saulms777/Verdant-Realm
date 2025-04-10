@@ -9,7 +9,7 @@
       fx:id="root"
       style="-fx-background-color: BLACK">
 
-    <GridPane fx:id="gridPane" alignment="CENTER"/>
+    <Pane fx:id="mapPane"/>
     <BorderPane>
         <top>
             <Label fx:id="fpsLabel" text=" FPS: 0.0" style="-fx-font-size: 16px"/>

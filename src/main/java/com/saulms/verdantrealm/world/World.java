@@ -1,7 +1,7 @@
-package com.saulms.verdantrealm.data;
+package com.saulms.verdantrealm.world;
 
 import com.saulms.verdantrealm.entities.Enemy;
-import com.saulms.verdantrealm.entities.Item;
+import com.saulms.verdantrealm.entities.DroppedItem;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public class World {
     private List<List<Integer>> tilemap;
     private List<List<Integer>> collision;
     private List<Enemy> enemies;
-    private List<Item> items;
+    private List<DroppedItem> droppedItems;
     private List<Event> events;
 
     public String getStageId() {
@@ -107,12 +107,12 @@ public class World {
         this.enemies = enemies;
     }
 
-    public List<Item> getItems() {
-        return items;
+    public List<DroppedItem> getDroppedItems() {
+        return droppedItems;
     }
 
-    public void setItems(List<Item> items) {
-        this.items = items;
+    public void setDroppedItems(List<DroppedItem> droppedItems) {
+        this.droppedItems = droppedItems;
     }
 
     public List<Event> getEvents() {

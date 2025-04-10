@@ -33,6 +33,8 @@ public class GameEngine extends Application {
             gameController.movePlayerY(-5);
         if (isPressed(KeyCode.S))
             gameController.movePlayerY(5);
+        if (isPressed(KeyCode.SPACE))
+            gameController.attack();
         if (isPressed(KeyCode.ESCAPE)) {
             gameTimer.stop();
             gameController.pause();

@@ -3,7 +3,8 @@ package com.saulms.verdantrealm.controllers;
 import com.saulms.verdantrealm.Camera;
 import com.saulms.verdantrealm.data.GameResource;
 import com.saulms.verdantrealm.data.SoundManager;
-import com.saulms.verdantrealm.data.World;
+import com.saulms.verdantrealm.world.World;
+import com.saulms.verdantrealm.entities.Enemy;
 import com.saulms.verdantrealm.entities.Entity;
 import com.saulms.verdantrealm.entities.Player;
 import javafx.fxml.FXML;
@@ -12,7 +13,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 
@@ -28,7 +28,7 @@ public class GameController extends Controller {
     private Camera camera;
 
     @FXML private Pane root;
-    @FXML private GridPane gridPane;
+    @FXML private Pane mapPane;
     @FXML private Label fpsLabel;
     @FXML private BorderPane pausePane;
     @FXML private Label resumeLabel;
@@ -58,10 +58,16 @@ public class GameController extends Controller {
             for (int x = 0; x < tileMap.getFirst().size(); x++) {
                 int type = tileMap.get(y).get(x);
                 ImageView tileView = new ImageView(tileset);
-                tileView.setSmooth(false);
                 tileView.setViewport(new Rectangle2D(tileSize * type, 0, tileSize, tileSize));
-                gridPane.add(tileView, tileSize * x, tileSize * y);
+                tileView.setLayoutX(x * tileSize);
+                tileView.setLayoutY(y * tileSize);
+                mapPane.getChildren().add(tileView);
             }
+        }
+
+        for (Enemy enemy : world.getEnemies()) {
+            enemy.initialize();
+            mapPane.getChildren().add(enemy.getSprite());
         }
     }
 
@@ -83,6 +89,10 @@ public class GameController extends Controller {
 
     public void updateFPS(double fps) {
         fpsLabel.setText(" FPS: %.1f".formatted(fps));
+    }
+
+    public void attack() {
+
     }
 
     public void movePlayerX(int dx) {
@@ -121,14 +131,14 @@ public class GameController extends Controller {
     private void scrollX(boolean movingRight) {
         int playerX = player.getX();
         int cameraX = camera.getX();
-        boolean scrollRight = playerX - cameraX > 2 * SCREEN_WIDTH / 3 && playerX < gridPane.getWidth() - SCREEN_WIDTH / 3;
+        boolean scrollRight = playerX - cameraX > 2 * SCREEN_WIDTH / 3 && playerX < mapPane.getWidth() - SCREEN_WIDTH / 3;
         boolean scrollLeft = playerX - cameraX < SCREEN_WIDTH / 3 && playerX > SCREEN_WIDTH / 3;
 
         if (movingRight ? scrollRight : scrollLeft)
             camera.setX(cameraX + (movingRight ? 1 : -1));
         else
             player.getSprite().setLayoutX(playerX - cameraX);
-        gridPane.setLayoutX(-cameraX);
+        mapPane.setLayoutX(-cameraX);
     }
 
     private void moveEntityY(Entity entity, int dy) {
@@ -159,14 +169,14 @@ public class GameController extends Controller {
     private void scrollY(boolean movingDown) {
         int playerY = player.getY();
         int cameraY = camera.getY();
-        boolean scrollDown = playerY - cameraY > 2 * SCREEN_HEIGHT / 3 && playerY < gridPane.getHeight() - SCREEN_HEIGHT / 3;
+        boolean scrollDown = playerY - cameraY > 2 * SCREEN_HEIGHT / 3 && playerY < mapPane.getHeight() - SCREEN_HEIGHT / 3;
         boolean scrollUp = playerY - cameraY < SCREEN_HEIGHT / 3 && playerY > SCREEN_HEIGHT / 3;
 
         if (movingDown ? scrollDown : scrollUp)
             camera.setY(cameraY + (movingDown ? 1 : -1));
         else
             player.getSprite().setLayoutY(playerY - cameraY);
-        gridPane.setLayoutY(-cameraY);
+        mapPane.setLayoutY(-cameraY);
     }
 
     private boolean intersects(Entity entity, int tileX, int tileY, int tileSize) {
