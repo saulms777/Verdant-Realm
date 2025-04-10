@@ -2,7 +2,7 @@ package com.saulms.verdantrealm;
 
 import com.saulms.verdantrealm.controllers.Controller;
 import com.saulms.verdantrealm.controllers.GameController;
-import javafx.animation.AnimationTimer;
+import com.saulms.verdantrealm.data.SoundManager;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -20,14 +20,11 @@ public class GameEngine extends Application {
     private Controller viewController;
     private GameController gameController;
     private final HashMap<KeyCode, Boolean> keyMap = new HashMap<>();
-    private final AnimationTimer gameTimer = new AnimationTimer() {
-        @Override
-        public void handle(long l) {
-            updateGame();
-        }
-    };
+    private final GameTimer gameTimer = new GameTimer(this::updateGame);
 
-    private void updateGame() {
+    private void updateGame(boolean fpsUpdate) {
+        if (fpsUpdate)
+            gameController.updateFPS(gameTimer.getFPS());
         if (isPressed(KeyCode.A))
             gameController.movePlayerX(-5);
         if (isPressed(KeyCode.D))
@@ -66,6 +63,7 @@ public class GameEngine extends Application {
     }
 
     public void exit() {
+        SoundManager.stopMusic();
         Platform.exit();
     }
 

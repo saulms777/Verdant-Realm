@@ -29,6 +29,7 @@ public class GameController extends Controller {
 
     @FXML private Pane root;
     @FXML private GridPane gridPane;
+    @FXML private Label fpsLabel;
     @FXML private BorderPane pausePane;
     @FXML private Label resumeLabel;
     @FXML private Label backLabel;
@@ -78,6 +79,10 @@ public class GameController extends Controller {
     private void back() {
         SoundManager.stopMusic();
         gameEngine.loadPage("view/start-page-view.fxml");
+    }
+
+    public void updateFPS(double fps) {
+        fpsLabel.setText(" FPS: %.1f".formatted(fps));
     }
 
     public void movePlayerX(int dx) {
