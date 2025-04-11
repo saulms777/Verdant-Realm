@@ -16,6 +16,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameController extends Controller {
@@ -26,6 +27,7 @@ public class GameController extends Controller {
     private World world;
     private Player player;
     private Camera camera;
+    private final List<Entity> entities = new ArrayList<>();
 
     @FXML private Pane root;
     @FXML private Pane mapPane;
@@ -34,12 +36,12 @@ public class GameController extends Controller {
     @FXML private Label resumeLabel;
     @FXML private Label backLabel;
 
-    @FXML
-    @Override
+    @FXML @Override
     protected void initialize() {
-        camera = new Camera(0, 0);
         loadWorld();
+        camera = new Camera(0, 0);
         player = new Player(world.getSpawnX(), world.getSpawnY());
+        entities.add(player);
         root.getChildren().add(1, player.getSprite());
         SoundManager.playMusic(world.getMusic(), true);
 
@@ -67,6 +69,7 @@ public class GameController extends Controller {
 
         for (Enemy enemy : world.getEnemies()) {
             enemy.initialize();
+            entities.add(enemy);
             mapPane.getChildren().add(enemy.getSprite());
         }
     }
@@ -104,28 +107,46 @@ public class GameController extends Controller {
     }
 
     private void moveEntityX(Entity entity, int dx) {
-        List<List<Integer>> collisionMap = world.getCollision();
-        int tileSize = world.getTilesize();
-
         boolean movingRight = dx > 0;
         for (int i = 0; i < Math.abs(dx); i++) {
-            for (int y = 0; y < collisionMap.size(); y++) {
-                for (int x = 0; x < collisionMap.getFirst().size(); x++) {
-                    if (collisionMap.get(y).get(x) == 0) continue;
-
-                    boolean touchingWall = intersects(entity, x * tileSize, y * tileSize, tileSize);
-                    boolean besideWall = entity.getBottom() == y * tileSize || entity.getTop() == (y + 1) * tileSize;
-                    if (touchingWall == besideWall) continue;
-
-                    boolean collideRight = movingRight && player.getRight() == x * tileSize;
-                    boolean collideLeft = !movingRight && player.getLeft() == (x + 1) * tileSize;
-                    if (collideRight || collideLeft) return;
-                }
-            }
+            if (checkWorldCollisionX(entity, movingRight)) return;
+            if (checkEntityCollisionX(entity, movingRight)) return;
 
             entity.setX(entity.getX() + (movingRight ? 1 : -1));
             if (entity instanceof Player) scrollX(movingRight);
+            else entity.getSprite().setLayoutX(entity.getX());
         }
+    }
+
+    private boolean checkWorldCollisionX(Entity entity, boolean movingRight) {
+        int tileSize = world.getTilesize();
+        for (int y = 0; y < world.getCollision().size(); y++) {
+            for (int x = 0; x < world.getCollision().getFirst().size(); x++) {
+                if (world.getCollision().get(y).get(x) == 0) continue;
+
+                boolean touchingWall = intersects(entity, x * tileSize, y * tileSize, tileSize);
+                boolean besideWall = entity.getBottom() == y * tileSize || entity.getTop() == (y + 1) * tileSize;
+                if (touchingWall == besideWall) continue;
+
+                boolean collideRight = movingRight && entity.getRight() == x * tileSize;
+                boolean collideLeft = !movingRight && entity.getLeft() == (x + 1) * tileSize;
+                if (collideRight || collideLeft) return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean checkEntityCollisionX(Entity entity, boolean movingRight) {
+        for (Entity e : entities) {
+            boolean touchingEntity = intersects(entity, e);
+            boolean besideEntity = entity.getBottom() == e.getTop() || entity.getTop() == e.getBottom();
+            if (touchingEntity == besideEntity) continue;
+
+            boolean collideRight = movingRight && entity.getRight() == e.getLeft();
+            boolean collideLeft = !movingRight && entity.getLeft() == e.getRight();
+            if (collideRight || collideLeft) return true;
+        }
+        return false;
     }
 
     private void scrollX(boolean movingRight) {
@@ -142,28 +163,46 @@ public class GameController extends Controller {
     }
 
     private void moveEntityY(Entity entity, int dy) {
-        List<List<Integer>> collisionMap = world.getCollision();
-        int tileSize = world.getTilesize();
-
         boolean movingDown = dy > 0;
         for (int i = 0; i < Math.abs(dy); i++) {
-            for (int y = 0; y < collisionMap.size(); y++) {
-                for (int x = 0; x < collisionMap.getFirst().size(); x++) {
-                    if (collisionMap.get(y).get(x) == 0) continue;
-
-                    boolean touchingWall = intersects(entity, x * tileSize, y * tileSize, tileSize);
-                    boolean besideWall = entity.getRight() == x * tileSize || entity.getLeft() == (x + 1) * tileSize;
-                    if (touchingWall == besideWall) continue;
-
-                    boolean collideDown = movingDown && entity.getBottom() == y * tileSize;
-                    boolean collideUp = !movingDown && entity.getTop() == (y + 1) * tileSize;
-                    if (collideDown || collideUp) return;
-                }
-            }
+            if (checkWorldCollisionY(entity, movingDown)) return;
+            if (checkEntityCollisionY(entity, movingDown)) return;
 
             entity.setY(entity.getY() + (movingDown ? 1 : -1));
             if (entity instanceof Player) scrollY(movingDown);
+            else entity.getSprite().setLayoutY(entity.getY());
         }
+    }
+
+    private boolean checkWorldCollisionY(Entity entity, boolean movingDown) {
+        int tileSize = world.getTilesize();
+        for (int y = 0; y < world.getCollision().size(); y++) {
+            for (int x = 0; x < world.getCollision().getFirst().size(); x++) {
+                if (world.getCollision().get(y).get(x) == 0) continue;
+
+                boolean touchingWall = intersects(entity, x * tileSize, y * tileSize, tileSize);
+                boolean besideWall = entity.getRight() == x * tileSize || entity.getLeft() == (x + 1) * tileSize;
+                if (touchingWall == besideWall) continue;
+
+                boolean collideDown = movingDown && entity.getBottom() == y * tileSize;
+                boolean collideUp = !movingDown && entity.getTop() == (y + 1) * tileSize;
+                if (collideDown || collideUp) return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean checkEntityCollisionY(Entity entity, boolean movingDown) {
+        for (Entity e : entities) {
+            boolean touchingEntity = intersects(entity, e);
+            boolean besideEntity = entity.getRight() == e.getLeft() || entity.getLeft() == e.getRight();
+            if (touchingEntity == besideEntity) continue;
+
+            boolean collideDown = movingDown && entity.getBottom() == e.getTop();
+            boolean collideUp = !movingDown && entity.getTop() == e.getBottom();
+            if (collideDown || collideUp) return true;
+        }
+        return false;
     }
 
     private void scrollY(boolean movingDown) {
@@ -184,6 +223,13 @@ public class GameController extends Controller {
                 entity.getLeft() <= tileX + tileSize &&
                 entity.getBottom() >= tileY &&
                 entity.getTop() <= tileY + tileSize;
+    }
+
+    private boolean intersects(Entity entity1, Entity entity2) {
+        return entity1.getRight() >= entity2.getLeft() &&
+                entity1.getLeft() <= entity2.getRight() &&
+                entity1.getBottom() >= entity2.getTop() &&
+                entity1.getTop() <= entity2.getBottom();
     }
 
 }
