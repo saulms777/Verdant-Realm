@@ -8,7 +8,7 @@ public class Player extends Entity {
     public Player(int x, int y) {
         this.x = x;
         this.y = y;
-        image = GameResource.loadImage("test_player.png");
+        image = GameResource.loadPlayer("test_player.png");
         sprite = new ImageView(image);
         sprite.setLayoutX(x);
         sprite.setLayoutY(y);

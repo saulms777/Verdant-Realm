@@ -1,7 +1,5 @@
 {
   "stageId": "test",
-  "width": 1600,
-  "height": 900,
   "spawnX": 288,
   "spawnY": 288,
   "music": "test_music.mp3",
@@ -32,7 +30,7 @@
   "enemies": [
     { "type": "SLIME", "level": 2, "x": 1152, "y": 432 }
   ],
-  "droppedItems": [
+  "groundItems": [
     { "type": "HEALTH_POTION", "x": 5, "y": 8 }
   ],
   "events": [

@@ -11,14 +11,12 @@ public class Enemy extends Entity {
     public Enemy() {}
 
     public void initialize() {
-        sprite = new ImageView(image = switch (type) {
-            case SLIME -> GameResource.loadImage("test_slime.png");
-            case ARCHER -> null;
-        });
+        image = GameResource.loadEnemy(type);
+        sprite = new ImageView(image);
         sprite.setLayoutX(x);
         sprite.setLayoutY(y);
-        sprite.setFitWidth(64);
-        sprite.setFitHeight(64);
+        sprite.setFitWidth(type.width);
+        sprite.setFitHeight(type.height);
     }
 
     public EnemyType getType() {

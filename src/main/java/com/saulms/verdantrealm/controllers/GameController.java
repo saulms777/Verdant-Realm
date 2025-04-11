@@ -51,7 +51,7 @@ public class GameController extends Controller {
 
     private void loadWorld() {
         world = GameResource.loadJson("test_world.json", World.class);
-        Image tileset = GameResource.loadImage(world.getTileset());
+        Image tileset = GameResource.loadTilemap(world.getTileset());
         List<List<Integer>> tileMap = world.getTilemap();
         int tileSize = world.getTilesize();
         for (int y = 0; y < tileMap.size(); y++) {

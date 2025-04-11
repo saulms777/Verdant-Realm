@@ -1,14 +1,13 @@
 package com.saulms.verdantrealm.world;
 
 import com.saulms.verdantrealm.entities.Enemy;
-import com.saulms.verdantrealm.entities.DroppedItem;
+import com.saulms.verdantrealm.entities.GroundItem;
 
 import java.util.List;
 
 public class World {
 
     private String stageId;
-    private int width, height;
     private int spawnX, spawnY;
     private String music;
     private String tileset;
@@ -16,7 +15,7 @@ public class World {
     private List<List<Integer>> tilemap;
     private List<List<Integer>> collision;
     private List<Enemy> enemies;
-    private List<DroppedItem> droppedItems;
+    private List<GroundItem> groundItems;
     private List<Event> events;
 
     public String getStageId() {
@@ -25,22 +24,6 @@ public class World {
 
     public void setStageId(String stageId) {
         this.stageId = stageId;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
     }
 
     public int getSpawnX() {
@@ -107,12 +90,12 @@ public class World {
         this.enemies = enemies;
     }
 
-    public List<DroppedItem> getDroppedItems() {
-        return droppedItems;
+    public List<GroundItem> getGroundItems() {
+        return groundItems;
     }
 
-    public void setDroppedItems(List<DroppedItem> droppedItems) {
-        this.droppedItems = droppedItems;
+    public void setGroundItems(List<GroundItem> groundItems) {
+        this.groundItems = groundItems;
     }
 
     public List<Event> getEvents() {

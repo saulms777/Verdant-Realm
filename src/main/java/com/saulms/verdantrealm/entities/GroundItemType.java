@@ -1,5 +1,5 @@
 package com.saulms.verdantrealm.entities;
 
-public enum DroppedItemType {
+public enum GroundItemType {
     HEALTH_POTION
 }

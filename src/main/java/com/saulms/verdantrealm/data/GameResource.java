@@ -2,6 +2,7 @@ package com.saulms.verdantrealm.data;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.saulms.verdantrealm.GameEngine;
+import com.saulms.verdantrealm.entities.EnemyType;
 import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -19,8 +20,18 @@ public class GameResource {
         return Objects.requireNonNull(GameEngine.class.getResourceAsStream(path));
     }
 
-    public static Image loadImage(String path) {
-        path = "/com/saulms/verdantrealm/images/" + path;
+    public static Image loadTilemap(String path) {
+        path = "/com/saulms/verdantrealm/assets/world/" + path;
+        return new Image(getResource(path));
+    }
+
+    public static Image loadPlayer(String path) {
+        path = "/com/saulms/verdantrealm/assets/player/" + path;
+        return new Image(getResource(path));
+    }
+
+    public static Image loadEnemy(EnemyType enemyType) {
+        String path = "/com/saulms/verdantrealm/assets/enemies/" + enemyType.path;
         return new Image(getResource(path));
     }
 
