@@ -25,10 +25,10 @@ public class Enemy extends Entity {
 
         Rectangle hpBarBackground = new Rectangle(type.width + 10, 10, Color.GRAY);
         hpBarBackground.setTranslateX(-5);
-        hpBarBackground.setTranslateY(-40);
+        hpBarBackground.setTranslateY(-30);
         hpBar = new Rectangle(type.width + 10, 10, Color.LIMEGREEN);
         hpBar.setTranslateX(-5);
-        hpBar.setTranslateY(-40);
+        hpBar.setTranslateY(-30);
         spriteGroup = new Group(sprite, hpBarBackground, hpBar);
 
         spriteGroup.setLayoutX(x);

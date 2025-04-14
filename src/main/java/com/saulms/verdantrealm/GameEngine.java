@@ -22,8 +22,10 @@ public class GameEngine extends Application {
     private final HashMap<KeyCode, Boolean> keyMap = new HashMap<>();
     private final GameTimer gameTimer = new GameTimer(this::updateGame);
 
-    private void updateGame(boolean fpsUpdate) {
-        if (fpsUpdate)
+    private GameTimer.UpdateOutput updateGame(GameTimer.UpdateInput in) {
+        boolean attacked = false;
+
+        if (in.canUpdateFps())
             gameController.updateFPS(gameTimer.getFPS());
         if (isPressed(KeyCode.A))
             gameController.movePlayerX(-5);
@@ -33,12 +35,16 @@ public class GameEngine extends Application {
             gameController.movePlayerY(-5);
         if (isPressed(KeyCode.S))
             gameController.movePlayerY(5);
-        if (isPressed(KeyCode.SPACE))
+        if (in.canAttack() && isPressed(KeyCode.SPACE)) {
+            attacked = true;
             gameController.attack();
+        }
         if (isPressed(KeyCode.ESCAPE)) {
             gameTimer.stop();
             gameController.pause();
         }
+
+        return new GameTimer.UpdateOutput(attacked);
     }
 
     private boolean isPressed(KeyCode key) {

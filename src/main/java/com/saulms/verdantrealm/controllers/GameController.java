@@ -38,11 +38,10 @@ public class GameController extends Controller {
 
     @FXML @Override
     protected void initialize() {
-        loadWorld();
         camera = new Camera(0, 0);
-        player = new Player(world.getSpawnX(), world.getSpawnY(), 100);
-        entities.add(player);
-        root.getChildren().add(1, player.getSprite());
+        loadWorld();
+        loadPlayer();
+        loadEnemies();
         SoundManager.playMusic(world.getMusic(), true);
 
         pausePane.setMinWidth(SCREEN_WIDTH);
@@ -66,7 +65,15 @@ public class GameController extends Controller {
                 mapPane.getChildren().add(tileView);
             }
         }
+    }
 
+    private void loadPlayer() {
+        player = new Player(world.getSpawnX(), world.getSpawnY(), 100);
+        entities.add(player);
+        root.getChildren().add(1, player.getSprite());
+    }
+
+    private void loadEnemies() {
         for (Enemy enemy : world.getEnemies()) {
             enemy.initialize();
             entities.add(enemy);
@@ -97,7 +104,7 @@ public class GameController extends Controller {
     public void attack() {
         for (Entity enemy : entities) {
             if (enemy instanceof Enemy) {
-                enemy.setHealthPoints(enemy.getHealthPoints() - 1);
+                enemy.setHealthPoints(enemy.getHealthPoints() - 10);
             }
         }
     }
