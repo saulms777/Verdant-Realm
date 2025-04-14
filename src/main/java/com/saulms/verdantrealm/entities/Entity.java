@@ -1,6 +1,7 @@
 package com.saulms.verdantrealm.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -8,11 +9,13 @@ public abstract class Entity {
 
     @JsonIgnore protected Image image;
     @JsonIgnore protected ImageView sprite;
+    @JsonIgnore protected double maxHealthPoints = Double.MAX_VALUE;
     protected int x, y;
+    protected double healthPoints;
 
     public Entity() {}
 
-    public ImageView getSprite() {
+    public Node getSprite() {
         return sprite;
     }
 
@@ -46,6 +49,15 @@ public abstract class Entity {
 
     public int getBottom() {
         return y + (int) sprite.getFitHeight();
+    }
+
+    public double getHealthPoints() {
+        return healthPoints;
+    }
+
+    public void setHealthPoints(double healthPoints) {
+        if (healthPoints >= 0) this.healthPoints = healthPoints;
+        if (maxHealthPoints == Double.MAX_VALUE) maxHealthPoints = healthPoints;
     }
 
 }
