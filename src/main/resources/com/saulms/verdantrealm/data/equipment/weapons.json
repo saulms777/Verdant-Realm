@@ -1,0 +1,29 @@
+{
+  "melee": {
+    "swords": [
+      { "name": "Iron Shortsword", "range": 20, "damage": 8, "speed": 6 },
+      { "name": "Knightblade", "range": 22, "damage": 14, "speed": 5 },
+      { "name": "Verdant Edge", "range": 25, "damage": 18, "speed": 6 }
+    ],
+    "axes": [
+      { "name": "Hatchet", "range": 15, "damage": 10, "speed": 4 },
+      { "name": "War Axe", "range": 16, "damage": 15, "speed": 4 },
+      { "name": "Oakcleaver", "range": 18, "damage": 20, "speed": 3 }
+    ],
+    "spears": [
+      { "name": "Wooden Spear", "range": 25, "damage": 6, "speed": 6 },
+      { "name": "Pike of Thorns", "range": 27, "damage": 11, "speed": 6 },
+      { "name": "Sylvan Fang", "range": 30, "damage": 15, "speed": 7 }
+    ],
+    "daggers": [
+      { "name": "Rusty Dagger", "range": 8, "damage": 5, "speed": 9 },
+      { "name": "Shadowfang", "range": 10, "damage": 8, "speed": 10 },
+      { "name": "Viperfang", "range": 12, "damage": 10, "speed": 10 }
+    ],
+    "hammers": [
+      { "name": "Wooden Maul", "range": 12, "damage": 18, "speed": 3 },
+      { "name": "Stonebreaker", "range": 13, "damage": 20, "speed": 3},
+      { "name": "Sunhammer", "range": 15, "damage": 24, "speed": 2 }
+    ]
+  }
+}

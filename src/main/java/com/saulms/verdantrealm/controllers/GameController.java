@@ -3,6 +3,7 @@ package com.saulms.verdantrealm.controllers;
 import com.saulms.verdantrealm.Camera;
 import com.saulms.verdantrealm.data.GameResource;
 import com.saulms.verdantrealm.data.SoundManager;
+import com.saulms.verdantrealm.weapons.WeaponData;
 import com.saulms.verdantrealm.world.World;
 import com.saulms.verdantrealm.entities.Enemy;
 import com.saulms.verdantrealm.entities.Entity;
@@ -25,6 +26,7 @@ public class GameController extends Controller {
     private static final double SCREEN_HEIGHT = Screen.getPrimary().getBounds().getHeight();
 
     private World world;
+    private WeaponData weaponData;
     private Player player;
     private Camera camera;
     private final List<Entity> entities = new ArrayList<>();
@@ -42,6 +44,7 @@ public class GameController extends Controller {
         loadWorld();
         loadPlayer();
         loadEnemies();
+        loadWeapons();
         SoundManager.playMusic(world.getMusic(), true);
 
         pausePane.setMinWidth(SCREEN_WIDTH);
@@ -79,6 +82,10 @@ public class GameController extends Controller {
             entities.add(enemy);
             mapPane.getChildren().add(enemy.getSprite());
         }
+    }
+
+    private void loadWeapons() {
+        weaponData = GameResource.loadJson("equipment/weapons.json", WeaponData.class);
     }
 
     public void pause() {
