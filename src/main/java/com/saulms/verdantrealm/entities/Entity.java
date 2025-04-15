@@ -12,6 +12,7 @@ public abstract class Entity {
     @JsonIgnore protected double maxHealthPoints = Double.MAX_VALUE;
     protected int x, y;
     protected double healthPoints;
+    protected Direction direction;
 
     public Entity() {}
 
@@ -58,6 +59,14 @@ public abstract class Entity {
     public void setHealthPoints(double healthPoints) {
         if (healthPoints >= 0) this.healthPoints = healthPoints;
         if (maxHealthPoints == Double.MAX_VALUE) maxHealthPoints = healthPoints;
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
     }
 
 }

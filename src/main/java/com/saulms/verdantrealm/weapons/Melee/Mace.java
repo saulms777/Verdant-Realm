@@ -3,7 +3,7 @@ package com.saulms.verdantrealm.weapons.Melee;
 import com.saulms.verdantrealm.weapons.Weapon;
 import javafx.geometry.Rectangle2D;
 
-public class Spear extends Weapon {
+public class Mace extends Weapon {
 
     @Override
     public Rectangle2D getHitBox() {

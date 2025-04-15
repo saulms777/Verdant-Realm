@@ -3,6 +3,7 @@ package com.saulms.verdantrealm.controllers;
 import com.saulms.verdantrealm.Camera;
 import com.saulms.verdantrealm.data.GameResource;
 import com.saulms.verdantrealm.data.SoundManager;
+import com.saulms.verdantrealm.entities.Direction;
 import com.saulms.verdantrealm.weapons.WeaponData;
 import com.saulms.verdantrealm.world.World;
 import com.saulms.verdantrealm.entities.Enemy;
@@ -26,7 +27,6 @@ public class GameController extends Controller {
     private static final double SCREEN_HEIGHT = Screen.getPrimary().getBounds().getHeight();
 
     private World world;
-    private WeaponData weaponData;
     private Player player;
     private Camera camera;
     private final List<Entity> entities = new ArrayList<>();
@@ -44,7 +44,8 @@ public class GameController extends Controller {
         loadWorld();
         loadPlayer();
         loadEnemies();
-        loadWeapons();
+        WeaponData.load();
+        player.setWeapon(WeaponData.createMelee(WeaponData.Melee.DAGGER, 1));
         SoundManager.playMusic(world.getMusic(), true);
 
         pausePane.setMinWidth(SCREEN_WIDTH);
@@ -71,7 +72,7 @@ public class GameController extends Controller {
     }
 
     private void loadPlayer() {
-        player = new Player(world.getSpawnX(), world.getSpawnY(), 100);
+        player = new Player(world.getSpawnX(), world.getSpawnY(), 100, Direction.RIGHT);
         entities.add(player);
         root.getChildren().add(1, player.getSprite());
     }
@@ -82,10 +83,6 @@ public class GameController extends Controller {
             entities.add(enemy);
             mapPane.getChildren().add(enemy.getSprite());
         }
-    }
-
-    private void loadWeapons() {
-        weaponData = GameResource.loadJson("equipment/weapons.json", WeaponData.class);
     }
 
     public void pause() {
@@ -110,9 +107,9 @@ public class GameController extends Controller {
 
     public void attack() {
         for (Entity enemy : entities) {
-            if (enemy instanceof Enemy) {
-                enemy.setHealthPoints(enemy.getHealthPoints() - 10);
-            }
+            if (enemy instanceof Enemy)
+                if (intersects(enemy, player.getWeapon().getHitBox()))
+                    enemy.setHealthPoints(enemy.getHealthPoints() - 10);
         }
     }
 
@@ -126,6 +123,7 @@ public class GameController extends Controller {
 
     private void moveEntityX(Entity entity, int dx) {
         boolean movingRight = dx > 0;
+        entity.setDirection(movingRight ? Direction.RIGHT : Direction.LEFT);
         for (int i = 0; i < Math.abs(dx); i++) {
             if (checkWorldCollisionX(entity, movingRight)) return;
             if (checkEntityCollisionX(entity, movingRight)) return;
@@ -156,6 +154,8 @@ public class GameController extends Controller {
 
     private boolean checkEntityCollisionX(Entity entity, boolean movingRight) {
         for (Entity e : entities) {
+            if (entity == e) continue;
+
             boolean touchingEntity = intersects(entity, e);
             boolean besideEntity = entity.getBottom() == e.getTop() || entity.getTop() == e.getBottom();
             if (touchingEntity == besideEntity) continue;
@@ -182,6 +182,7 @@ public class GameController extends Controller {
 
     private void moveEntityY(Entity entity, int dy) {
         boolean movingDown = dy > 0;
+        player.setDirection(movingDown ? Direction.DOWN : Direction.UP);
         for (int i = 0; i < Math.abs(dy); i++) {
             if (checkWorldCollisionY(entity, movingDown)) return;
             if (checkEntityCollisionY(entity, movingDown)) return;
@@ -212,6 +213,8 @@ public class GameController extends Controller {
 
     private boolean checkEntityCollisionY(Entity entity, boolean movingDown) {
         for (Entity e : entities) {
+            if (entity == e) continue;
+
             boolean touchingEntity = intersects(entity, e);
             boolean besideEntity = entity.getRight() == e.getLeft() || entity.getLeft() == e.getRight();
             if (touchingEntity == besideEntity) continue;
@@ -248,6 +251,13 @@ public class GameController extends Controller {
                 entity1.getLeft() <= entity2.getRight() &&
                 entity1.getBottom() >= entity2.getTop() &&
                 entity1.getTop() <= entity2.getBottom();
+    }
+
+    private boolean intersects(Entity entity, Rectangle2D rect) {
+        return entity.getRight() >= rect.getMinX() &&
+                entity.getLeft() <= rect.getMaxX() &&
+                entity.getBottom() >= rect.getMinY() &&
+                entity.getTop() <= rect.getMaxY();
     }
 
 }

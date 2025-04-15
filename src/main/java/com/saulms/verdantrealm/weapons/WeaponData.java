@@ -1,27 +1,54 @@
 package com.saulms.verdantrealm.weapons;
 
+import com.saulms.verdantrealm.data.GameResource;
 import com.saulms.verdantrealm.weapons.Melee.*;
 
 import java.util.List;
 
 public class WeaponData {
 
-    private MeleeStats melee;
+    private static WeaponData weapons;
 
-    public MeleeStats getMelee() {
+    public static void load() {
+        weapons = GameResource.loadJson("equipment/weapons.json", WeaponData.class);
+    }
+
+    public static Weapon createMelee(Melee type, int tier) {
+        return switch (type) {
+            case SWORD -> weapons.getMelee().getSwords().get(tier - 1);
+            case AXE -> weapons.getMelee().getAxes().get(tier - 1);
+            case SPEAR -> weapons.getMelee().getSpears().get(tier - 1);
+            case DAGGER -> weapons.getMelee().getDaggers().get(tier - 1);
+            case MACE -> weapons.getMelee().getMaces().get(tier - 1);
+        };
+    }
+
+
+    private MeleeData melee;
+
+    public MeleeData getMelee() {
         return melee;
     }
 
-    public void setMelee(MeleeStats melee) {
+    public void setMelee(MeleeData melee) {
         this.melee = melee;
     }
 
-    public static class MeleeStats {
+    public enum Melee {
+        SWORD,
+        AXE,
+        SPEAR,
+        DAGGER,
+        MACE
+    }
+
+    public static class MeleeData {
+
         private List<Sword> swords;
         private List<Axe> axes;
         private List<Spear> spears;
         private List<Dagger> daggers;
-        private List<Hammer> hammers;
+        private List<Mace> maces;
 
         public List<Sword> getSwords() {
             return swords;
@@ -55,13 +82,14 @@ public class WeaponData {
             this.daggers = daggers;
         }
 
-        public List<Hammer> getHammers() {
-            return hammers;
+        public List<Mace> getMaces() {
+            return maces;
         }
 
-        public void setHammers(List<Hammer> hammers) {
-            this.hammers = hammers;
+        public void setMaces(List<Mace> maces) {
+            this.maces = maces;
         }
+
     }
 
 }
