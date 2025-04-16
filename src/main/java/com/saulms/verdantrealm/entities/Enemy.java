@@ -12,25 +12,29 @@ public class Enemy extends Entity {
 
     @JsonIgnore private Group spriteGroup;
     @JsonIgnore private Rectangle hpBar;
-    private EnemyType type;
+    private EnemyType id;
     private int level;
 
-    public Enemy() {}
-
     public void initialize() {
-        image = GameResource.loadEnemy(type);
-        sprite = new ImageView(image);
-        sprite.setFitWidth(type.width);
-        sprite.setFitHeight(type.height);
+        EnemyData.Stats e = EnemyData.getStats(id);
 
-        Rectangle hpBarBackground = new Rectangle(type.width + 10, 10, Color.GRAY);
+        maxHealthPoints = 100 * level;
+        healthPoints = maxHealthPoints;
+
+        image = GameResource.loadEnemy(e.image());
+        sprite = new ImageView(image);
+        sprite.setFitWidth(e.width());
+        sprite.setFitHeight(e.height());
+
+        hpBarWidth = e.width() + 10;
+        Rectangle hpBarBackground = new Rectangle(hpBarWidth, 10, Color.GRAY);
         hpBarBackground.setTranslateX(-5);
         hpBarBackground.setTranslateY(-30);
-        hpBar = new Rectangle(type.width + 10, 10, Color.LIMEGREEN);
+        hpBar = new Rectangle(hpBarWidth, 10, Color.LIMEGREEN);
         hpBar.setTranslateX(-5);
         hpBar.setTranslateY(-30);
-        spriteGroup = new Group(sprite, hpBarBackground, hpBar);
 
+        spriteGroup = new Group(sprite, hpBarBackground, hpBar);
         spriteGroup.setLayoutX(x);
         spriteGroup.setLayoutY(y);
     }
@@ -40,12 +44,12 @@ public class Enemy extends Entity {
         return spriteGroup;
     }
 
-    public EnemyType getType() {
-        return type;
+    public EnemyType getId() {
+        return id;
     }
 
-    public void setType(EnemyType type) {
-        this.type = type;
+    public void setId(EnemyType id) {
+        this.id = id;
     }
 
     public int getLevel() {
@@ -60,7 +64,7 @@ public class Enemy extends Entity {
     public void setHealthPoints(double healthPoints) {
         super.setHealthPoints(healthPoints);
         if (spriteGroup == null) return;
-        hpBar.setWidth((type.width + 10) * healthPoints / maxHealthPoints);
+        hpBar.setWidth(hpBarWidth * healthPoints / maxHealthPoints);
     }
 
 }

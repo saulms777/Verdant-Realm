@@ -1,0 +1,14 @@
+{
+  "SLIME": {
+    "image": "test_slime.png",
+    "name": "Slime",
+    "width": 48,
+    "height": 48
+  },
+  "ARCHER": {
+    "image": "",
+    "name": "Archer",
+    "width": 48,
+    "height": 48
+  }
+}

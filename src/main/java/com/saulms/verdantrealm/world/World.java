@@ -1,7 +1,6 @@
 package com.saulms.verdantrealm.world;
 
 import com.saulms.verdantrealm.entities.Enemy;
-import com.saulms.verdantrealm.entities.GroundItem;
 
 import java.util.List;
 

@@ -3,12 +3,9 @@ package com.saulms.verdantrealm.controllers;
 import com.saulms.verdantrealm.Camera;
 import com.saulms.verdantrealm.data.GameResource;
 import com.saulms.verdantrealm.data.SoundManager;
-import com.saulms.verdantrealm.entities.Direction;
+import com.saulms.verdantrealm.entities.*;
 import com.saulms.verdantrealm.weapons.WeaponData;
 import com.saulms.verdantrealm.world.World;
-import com.saulms.verdantrealm.entities.Enemy;
-import com.saulms.verdantrealm.entities.Entity;
-import com.saulms.verdantrealm.entities.Player;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Label;
@@ -78,6 +75,7 @@ public class GameController extends Controller {
     }
 
     private void loadEnemies() {
+        EnemyData.load();
         for (Enemy enemy : world.getEnemies()) {
             enemy.initialize();
             entities.add(enemy);

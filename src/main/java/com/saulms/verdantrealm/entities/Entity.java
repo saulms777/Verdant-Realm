@@ -7,18 +7,28 @@ import javafx.scene.image.ImageView;
 
 public abstract class Entity {
 
+    // json ignored fields
     @JsonIgnore protected Image image;
     @JsonIgnore protected ImageView sprite;
-    @JsonIgnore protected double maxHealthPoints = Double.MAX_VALUE;
-    protected int x, y;
-    protected double healthPoints;
-    protected Direction direction;
-
-    public Entity() {}
+    @JsonIgnore protected double maxHealthPoints;
+    @JsonIgnore protected int hpBarWidth;
+    @JsonIgnore protected double healthPoints;
 
     public Node getSprite() {
         return sprite;
     }
+
+    public double getHealthPoints() {
+        return healthPoints;
+    }
+
+    public void setHealthPoints(double healthPoints) {
+        this.healthPoints = healthPoints;
+    }
+
+    // json fields
+    protected int x, y;
+    protected Direction direction;
 
     public int getX() {
         return x;
@@ -50,15 +60,6 @@ public abstract class Entity {
 
     public int getBottom() {
         return y + (int) sprite.getFitHeight();
-    }
-
-    public double getHealthPoints() {
-        return healthPoints;
-    }
-
-    public void setHealthPoints(double healthPoints) {
-        if (healthPoints >= 0) this.healthPoints = healthPoints;
-        if (maxHealthPoints == Double.MAX_VALUE) maxHealthPoints = healthPoints;
     }
 
     public Direction getDirection() {

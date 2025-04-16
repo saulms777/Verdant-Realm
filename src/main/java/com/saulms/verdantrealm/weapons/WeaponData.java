@@ -7,10 +7,11 @@ import java.util.List;
 
 public class WeaponData {
 
+    // singleton data fields
     private static WeaponData weapons;
 
     public static void load() {
-        weapons = GameResource.loadJson("equipment/weapons.json", WeaponData.class);
+        weapons = GameResource.loadJson("weapons.json", WeaponData.class);
     }
 
     public static Weapon createMelee(Melee type, int tier) {
@@ -24,6 +25,7 @@ public class WeaponData {
     }
 
 
+    // json instantiation fields
     private MeleeData melee;
 
     public MeleeData getMelee() {

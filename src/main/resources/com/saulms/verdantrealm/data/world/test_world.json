@@ -28,10 +28,10 @@
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   ],
   "enemies": [
-    { "type": "SLIME", "level": 2, "x": 1152, "y": 432, "healthPoints": 100, "direction": "RIGHT" }
+    { "id": "SLIME", "level": 2, "x": 1152, "y": 432, "direction": "RIGHT" }
   ],
   "groundItems": [
-    { "type": "HEALTH_POTION", "x": 5, "y": 8 }
+    { "id": "HEALTH_POTION", "x": 5, "y": 8 }
   ],
   "events": [
     { "trigger": "ENTER", "area": { "x": 20, "y": 10, "w": 5, "h": 5 }, "actionType": "SPAWN_WAVE" }
