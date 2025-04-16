@@ -7,7 +7,7 @@
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.saulms.verdantrealm.controllers.GameController"
       fx:id="root"
-      style="-fx-background-color: BLACK">
+      style="-fx-background-color: WHITE">
 
     <Pane fx:id="mapPane"/>
     <BorderPane>

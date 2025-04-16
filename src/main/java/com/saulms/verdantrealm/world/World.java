@@ -10,8 +10,9 @@ public class World {
     private int spawnX, spawnY;
     private String music;
     private String tileset;
+    private int setsize;
     private int tilesize;
-    private List<List<Integer>> tilemap;
+    private List<List<List<Integer>>> tilemap;
     private List<List<Integer>> collision;
     private List<Enemy> enemies;
     private List<GroundItem> groundItems;
@@ -57,6 +58,14 @@ public class World {
         this.tileset = tileset;
     }
 
+    public int getSetsize() {
+        return setsize;
+    }
+
+    public void setSetsize(int setsize) {
+        this.setsize = setsize;
+    }
+
     public int getTilesize() {
         return tilesize;
     }
@@ -65,11 +74,11 @@ public class World {
         this.tilesize = tilesize;
     }
 
-    public List<List<Integer>> getTilemap() {
+    public List<List<List<Integer>>> getTilemap() {
         return tilemap;
     }
 
-    public void setTilemap(List<List<Integer>> tilemap) {
+    public void setTilemap(List<List<List<Integer>>> tilemap) {
         this.tilemap = tilemap;
     }
 

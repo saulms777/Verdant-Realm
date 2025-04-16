@@ -54,15 +54,19 @@ public class GameController extends Controller {
     private void loadWorld() {
         world = GameResource.loadJson("world/test_world.json", World.class);
         Image tileset = GameResource.loadTilemap(world.getTileset());
-        List<List<Integer>> tileMap = world.getTilemap();
+        List<List<List<Integer>>> tileMap = world.getTilemap();
+        int setSize = world.getSetsize();
         int tileSize = world.getTilesize();
         for (int y = 0; y < tileMap.size(); y++) {
             for (int x = 0; x < tileMap.getFirst().size(); x++) {
-                int type = tileMap.get(y).get(x);
+                List<Integer> type = tileMap.get(y).get(x);
                 ImageView tileView = new ImageView(tileset);
-                tileView.setViewport(new Rectangle2D(tileSize * type, 0, tileSize, tileSize));
-                tileView.setLayoutX(x * tileSize);
-                tileView.setLayoutY(y * tileSize);
+                tileView.setViewport(new Rectangle2D(
+                        setSize * type.getFirst(), setSize * type.getLast(), setSize, setSize));
+                tileView.setFitWidth(tileSize);
+                tileView.setFitHeight(tileSize);
+                tileView.setLayoutX(tileSize * x);
+                tileView.setLayoutY(tileSize * y);
                 mapPane.getChildren().add(tileView);
             }
         }
